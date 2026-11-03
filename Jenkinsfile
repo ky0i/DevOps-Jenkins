@@ -12,7 +12,7 @@ pipeline {
         stage('Deploy to Nexus') {
             steps {
                 sh '''
-                curl -v -f -u "admin:-G#UUMS8Qi@A" \
+                curl -v -f -u "admin:-G#UUMS8Qi@A$p" \
                      --upload-file target/accessing-data-mysql-initial-0.0.1-SNAPSHOT.jar \
                      http://host.docker.internal:8081/repository/springboot-repo/accessing-data-mysql-initial-0.0.1-SNAPSHOT.jar
                 '''

@@ -9,6 +9,15 @@ pipeline {
                 sh 'mvn clean package -DskipTests'
             }
         }
+        stage('Deploy to Nexus') {
+            steps {
+                sh '''
+                curl -u admin:-G#UUMS8Qi@A$p \
+                     --upload-file target/accessing-data-mysql-initial-0.0.1-SNAPSHOT.jar \
+                     http://host.docker.internal:8081/repository/springboot-repo/accessing-data-mysql-initial-0.0.1-SNAPSHOT.jar
+                '''
+            }
+        }
     }
     post {
         success {
